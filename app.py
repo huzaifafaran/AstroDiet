@@ -1,3 +1,4 @@
+!pip install Together
 from flask import Flask, render_template, request, jsonify
 from together import Together
 import os
