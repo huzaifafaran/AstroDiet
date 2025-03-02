@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Diet Plan Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="mt-10 floating mb-16 text-center">
+            <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                Generate Your Cosmic Diet Plan
+            </h1>
+            <div class="h-1 bg-gradient-to-r from-pink-500 to-purple-500 w-32 mx-auto rounded-full"></div>
+        </div>
+
+        <form id="diet-form" class="space-y-6 backdrop-blur-lg bg-white/10 rounded-2xl p-8 shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-cyan-300">Height (cm)</label>
+                    <input type="number" id="height" required
+                           class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all hover:bg-white/10">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-cyan-300">Weight (kg)</label>
+                    <input type="number" id="weight" required
+                           class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all hover:bg-white/10">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-cyan-300">Age</label>
+                    <input type="number" id="age" required
+                           class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all hover:bg-white/10">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-cyan-300">Gender</label>
+                    <select id="gender" required
+                            class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all appearance-none hover:bg-white/10">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-cyan-300">Activity Level</label>
+                <select id="activity_level" required
+                        class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all appearance-none hover:bg-white/10">
+                    <option value="sedentary">Sedentary</option>
+                    <option value="lightly_active">Lightly Active</option>
+                    <option value="moderately_active">Moderately Active</option>
+                    <option value="very_active">Very Active</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-cyan-300">Goals</label>
+                <textarea id="goals" rows="4" required
+                          class="w-full px-4 py-3 rounded-lg bg-white/5 border border-cyan-400/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all hover:bg-white/10"></textarea>
+            </div>
+
+            <button type="button" onclick="generatePlan()"
+                    class="w-full py-4 px-6 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-lg font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
+                Generate Stellar Plan 🌟
+            </button>
+        </form>
+
+        <div id="result" class="mt-12"></div>
+        <div class="floating mt-40 mb-16 text-center">
+            <h4 class="mt-6 text-1xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">
+                Made with <span>♥</span> by Huzaifa
+            </h4>
+            <div class="h-1 bg-gradient-to-r from-pink-500 to-purple-500 w-32 mx-auto rounded-full"></div>
+        </div>
+    </div>
+
+    <script>
+        // Keep the same JavaScript functionality
+        async function generatePlan() {
+            const data = {
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                activity_level: document.getElementById('activity_level').value,
+                goals: document.getElementById('goals').value
+            };
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="p-6 bg-white/5 rounded-xl border border-cyan-400/30 animate-pulse">
+                    <div class="flex items-center space-x-3 text-cyan-400">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="text-lg">Crafting your cosmic nutrition plan...</span>
+                    </div>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/generate-plan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                if (result.error) throw new Error(result.error);
+
+                resultDiv.innerHTML = `
+                    <div class="space-y-6 backdrop-blur-lg bg-white/10 rounded-2xl p-8 shadow-2xl animate-fade-in">
+                        <h2 class="text-3xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                            Your Cosmic Nutrition Blueprint
+                        </h2>
+                        <div class="plan-content space-y-4 text-cyan-100 leading-relaxed">
+                            ${result.diet_plan.replace(/\n/g, '<br>')}
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="p-6 bg-red-500/20 rounded-xl border border-red-400/30">
+                        <div class="flex items-center space-x-3 text-red-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <span class="text-lg">Error: ${error.message || 'Failed to generate plan'}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
