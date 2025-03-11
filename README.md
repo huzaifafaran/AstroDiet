@@ -12,7 +12,7 @@ AstroDiet is a web app that creates personalized diet plans based on your unique
 ## Live Demo
 
 Experience AstroDiet live at:  
-[https://myastrodiet.streamlit.app/](https://myastrodiet.streamlit.app/)
+[https://astrodiet-b69ys4xqulgqrccv2vbjrm.streamlit.app//](https://astrodiet-b69ys4xqulgqrccv2vbjrm.streamlit.app/)
 
 ## Installation
 
